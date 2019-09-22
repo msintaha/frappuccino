@@ -11,50 +11,50 @@
 - To check if the server is up and running, hit http://localhost:8080/_status
 - Client will be running at http://localhost:3000
 - To run client and server concurrently, `yarn dev`
-- To setup mongodb, create a db called `frappuccino` (or whatever name you prefer for your DB by replacing this name in src/server/index.js) in Robo 3T
+- To setup mongodb, create a db called `frappuccino` (or whatever name you prefer for your DB by replacing this name in server/index.js) in Robo 3T
 
 ### Project Structure
 
 ```
 .
-├── assets
-│   └── frappuccino.png
+├── client
+│   ├── App.jsx
+│   ├── app.scss
+│   ├── assets
+│   │   └── images
+│   │       └── frappuccino.png
+│   ├── components
+│   │   └── Header
+│   │       └── index.jsx
+│   ├── config.js
+│   ├── index.jsx
+│   ├── pages
+│   │   ├── Home
+│   │   │   ├── _index.scss
+│   │   │   └── index.jsx
+│   │   └── _index.scss
+│   ├── services
+│   │   └── UserService.js
+│   └── utils
+│       └── http.js
 ├── nodemon.json
 ├── package.json
 ├── public
 │   └── index.html
-├── src
-│   ├── client
-│   │   ├── App.jsx
-│   │   ├── app.scss
-│   │   ├── components
-│   │   │   └── Header
-│   │   │       └── index.jsx
-│   │   ├── config.js
-│   │   ├── index.jsx
-│   │   ├── pages
-│   │   │   ├── Home
-│   │   │   │   ├── _index.scss
-│   │   │   │   └── index.jsx
-│   │   │   └── _index.scss
-│   │   ├── services
-│   │   │   └── UserService.js
-│   │   └── utils
-│   │       └── http.js
-│   └── server
-│       ├── auth
-│       │   └── index.js
-│       ├── config
-│       │   ├── middlewares
-│       │   │   └── authenticator.js
-│       │   └── routes
-│       │       ├── auth.js
-│       │       └── user.js
-│       ├── index.js
-│       ├── models.js
-│       └── user
-│           ├── User.js
-│           └── index.js
+├── server
+│   ├── auth
+│   │   └── index.js
+│   ├── config
+│   │   ├── middlewares
+│   │   │   └── authenticator.js
+│   │   └── routes
+│   │       ├── auth.js
+│   │       └── user.js
+│   ├── index.js
+│   ├── models.js
+│   └── user
+│       ├── User.js
+│       └── index.js
 ├── webpack.common.js
 ├── webpack.dev.js
 ├── webpack.prod.js

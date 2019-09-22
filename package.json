@@ -2,12 +2,12 @@
   "name": "frappuccino",
   "version": "1.0.0",
   "description": "A node and react boilerplate for fast development",
-  "main": "src/server/index.js",
+  "main": "server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "npm run build && node server/index.js",
     "client": "webpack-dev-server --config webpack.dev.js",
-    "server": "nodemon src/server/index.js",
+    "server": "nodemon server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Mifta Sintaha",

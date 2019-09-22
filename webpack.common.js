@@ -6,18 +6,23 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const globImporter = require('node-sass-glob-importer');
 
+const ASSET_PATH = process.env.ASSET_PATH || '/assets';
+
 module.exports = {
   entry: {
-    app: './src/client/index.jsx',
-    css: './src/client/app.scss'
+    app: './client/index.jsx',
+    css: './client/app.scss'
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './client/dist'),
     publicPath: '/'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['./client/dist']),
+    new webpack.DefinePlugin({
+      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
