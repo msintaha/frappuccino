@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import './pages/**/*.scss';
+@import './components/**/*.scss';
 
 html {
   box-sizing: border-box;
-  font: normal 400 14px/1.4 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   color: #4a4a4a;
 }
 *,*:before,*:after {
