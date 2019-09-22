@@ -1,4 +1,4 @@
-# Node and React Boilerplate
+# Frappuccino - A Node and React Boilerplate for fast development
 
 ### Setup
 - To install packages run, `yarn install`
