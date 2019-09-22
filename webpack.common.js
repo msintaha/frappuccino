@@ -12,7 +12,7 @@ module.exports = {
     css: './src/client/app.scss'
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -23,7 +23,7 @@ module.exports = {
     }),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
+      filename: '[name].css',
     }),
   ],
   module: {
@@ -66,15 +66,15 @@ module.exports = {
       },
       // Add SCSS Support and Glob Addition
       {
-        test: /\.(scss|css|sass)$/,
+        test: /\.scss$/,
         use: [{
-          loader: 'style-loader'
+          loader: "style-loader"
         }, {
           loader: MiniCssExtractPlugin.loader
         }, {
-          loader: 'css-loader'
+          loader: "css-loader"
         }, {
-          loader: 'sass-loader',
+          loader: "sass-loader",
           options: {
             importer: globImporter()
           }
