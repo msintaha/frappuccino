@@ -11,7 +11,7 @@
 - To check if the server is up and running, hit http://localhost:8080/_status
 - Client will be running at http://localhost:3000
 - To run client and server concurrently, `yarn dev`
-- To setup mongodb, create a db called `frappuccino` (or whatever name you prefer for your DB by replacing this name in server.js) in Robo 3T
+- To setup mongodb, create a db called `frappuccino` (or whatever name you prefer for your DB by replacing this name in src/server/index.js) in Robo 3T
 
 ### Project Structure
 
