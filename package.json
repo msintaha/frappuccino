@@ -10,10 +10,10 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Mifta Sintaha",
+  "license": "MIT",
   "dependencies": {
-    "axios": "0.19.0",
+    "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
