@@ -37,8 +37,10 @@
 │   │   │   │   ├── _index.scss
 │   │   │   │   └── index.jsx
 │   │   │   └── _index.scss
-│   │   └── services
-│   │       └── APIService.js
+│   │   ├── services
+│   │   │   └── UserService.js
+│   │   └── utils
+│   │       └── http.js
 │   └── server
 │       ├── auth
 │       │   └── index.js
