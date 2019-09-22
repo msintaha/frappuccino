@@ -52,8 +52,10 @@ A Node and React Boilerplate for fast development
 │   │       └── user.js
 │   ├── index.js
 │   ├── models.js
-│   └── user
-│       ├── User.js
+│   ├── user
+│   │   ├── User.js
+│   │   └── index.js
+│   └── utils
 │       └── index.js
 ├── webpack.common.js
 ├── webpack.dev.js
