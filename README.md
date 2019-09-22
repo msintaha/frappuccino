@@ -1,9 +1,9 @@
 <p align="center">
-  <img width="100" src="https://raw.githubusercontent.com/msintaha/frappuccino/master/assets/frappuccino.png">
+  <img width="100" src="https://raw.githubusercontent.com/msintaha/frappuccino/master/client/assets/images/frappuccino.png">
 </p>
 
 # Frappuccino
-## A Node and React Boilerplate for fast development
+A Node and React Boilerplate for fast development
 
 ### Setup
 - To install packages run, `yarn install`
