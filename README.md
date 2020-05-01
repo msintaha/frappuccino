@@ -1,66 +1,105 @@
 <p align="center">
-  <img width="100" src="https://raw.githubusercontent.com/msintaha/frappuccino/master/client/assets/images/frappuccino.png">
+  <img width="100" src="https://raw.githubusercontent.com/msintaha/frappuccino/master/client/src/assets/images/logo.png">
 </p>
 
 # Frappuccino
-A Node and React Boilerplate for fast development
+A Node and React Boilerplate for fast development with CI/CD
 
 ### Setup
-- To install packages run, `yarn install`
-- To run client and server separately `yarn client` and `yarn server` 
-- To check if the server is up and running, hit http://localhost:8080/_status
-- Client will be running at http://localhost:3000
-- To run client and server concurrently, `yarn dev`
-- To setup mongodb, create a db called `frappuccino` (or whatever name you prefer for your DB by replacing this name in server/index.js) in Robo 3T
+- Node latest
+- Install yarn using `npm i -g yarn`
+- If you sdd new packages, run `yarn` to update lockfile
+
+## Docker for running
+### Run locally
+- `docker-compose up`
+### Run tests locally
+- `docker ps` to get container id of frappuccino_web and frappuccino_api
+- `docker exec -it <container_id> npm run test`
+
+## CI/CD
+- Create a travis-ci account, add your repository and activate it in settings
+- Add AWS environment variables like access_key and secret_key (for deploying in aws)
+- For deploying to aws, uncomment the `deploy: ` portion in the .travis.yml file and add in your bucket_name and app_name
 
 ### Project Structure
 
 ```
 .
+├── Dockerrun.aws.json
+├── LICENSE.md
+├── README.md
 ├── client
-│   ├── App.jsx
-│   ├── app.scss
-│   ├── assets
-│   │   └── images
-│   │       └── frappuccino.png
-│   ├── components
-│   │   └── Header
-│   │       └── index.jsx
-│   ├── config.js
-│   ├── index.jsx
-│   ├── pages
-│   │   ├── Home
-│   │   │   ├── _index.scss
-│   │   │   └── index.jsx
-│   │   └── _index.scss
-│   ├── services
-│   │   └── UserService.js
-│   └── utils
-│       └── http.js
-├── nodemon.json
-├── package.json
-├── public
-│   └── index.html
-├── server
-│   ├── auth
-│   │   └── index.js
-│   ├── config
-│   │   ├── middlewares
-│   │   │   └── authenticator.js
-│   │   └── routes
-│   │       ├── auth.js
-│   │       └── user.js
-│   ├── index.js
-│   ├── models.js
-│   ├── user
-│   │   ├── User.js
-│   │   └── index.js
-│   └── utils
-│       └── index.js
-├── webpack.common.js
-├── webpack.dev.js
-├── webpack.prod.js
-└── yarn.lock
+│   ├── Dockerfile
+│   ├── Dockerfile.dev
+│   ├── LICENSE.md
+│   ├── README.md
+│   ├── nginx
+│   │   └── default.conf
+│   ├── package.json
+│   ├── public
+│   │   └── index.html
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── app.scss
+│   │   ├── assets
+│   │   │   └── images
+│   │   │       └── logo.png
+│   │   ├── components
+│   │   │   └── Header
+│   │   │       └── index.jsx
+│   │   ├── config.js
+│   │   ├── index.jsx
+│   │   ├── pages
+│   │   │   ├── Home
+│   │   │   │   ├── Home.spec.js
+│   │   │   │   ├── _index.scss
+│   │   │   │   └── index.jsx
+│   │   │   └── _index.scss
+│   │   ├── services
+│   │   │   └── FlavorService.js
+│   │   ├── test
+│   │   │   ├── dom.js
+│   │   │   └── helper.js
+│   │   └── utils
+│   │       └── http.js
+│   ├── webpack.common.js
+│   ├── webpack.dev.js
+│   ├── webpack.prod.js
+│   └── yarn.lock
+├── docker-compose.yml
+├── nginx
+│   ├── Dockerfile
+│   ├── Dockerfile.dev
+│   └── default.conf
+└── server
+    ├── Dockerfile
+    ├── Dockerfile.dev
+    ├── auth
+    │   └── index.js
+    ├── config
+    │   ├── index.js
+    │   ├── middlewares
+    │   │   └── authenticator.js
+    │   └── routes
+    │       ├── auth.js
+    │       ├── flavor.js
+    │       ├── index.js
+    │       └── user.js
+    ├── flavor
+    │   ├── Flavor.js
+    │   ├── TEST
+    │   │   └── runner.js
+    │   └── index.js
+    ├── index.js
+    ├── keys.js
+    ├── models.js
+    ├── package.json
+    ├── user
+    │   ├── User.js
+    │   └── index.js
+    └── utils
+        └── index.js
 ```
 
 # License

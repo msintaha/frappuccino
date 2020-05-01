@@ -9,26 +9,17 @@ const http = require('http');
 const expressSession = require('express-session');
 const redis = require('redis');
 const RedisStore = require('connect-redis')(expressSession);
-const fs = require('fs');
 const mongoose = require('mongoose');
-const path = require('path');
+const keys = require('./keys');
+const config = require('./config');
 
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.static('dist'));
-
-app.use(cors({
-  origin: ['http://localhost:3000'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
-app.options('*', cors());
+app.use(cors());
 
 const router = express.Router();
 app.use(router);
-
-const DB_URL = 'mongodb://localhost:27017/frappuccino'; // Replace with your database name
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -38,20 +29,20 @@ app.use(cookieParser());
 
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(expressSession({
-  key: 'frappuccino',
-  secret: 'zxc90zxc',
+  key: keys.expressSessionKey,
+  secret: keys.expressSessionSecret,
   resave: false,
   saveUninitialized: false,
   store: new RedisStore({
-    host: 'localhost',
-    port: '6379',
-    client: redis.createClient('6379', 'localhost')
+    host: keys.redisHost,
+    port: keys.redisPort,
+    client: redis.createClient(keys.redisPort, keys.redisHost),
   })
 }));
 
 app.use((req, res, next) => {
   if (req.cookies && req.cookies.user_sid && !req.session.user) {
-    res.clearCookie('frappuccino');
+    res.clearCookie(keys.expressSessionKey);
   }
   next();
 });
@@ -66,20 +57,20 @@ app.use((err, req, res, next) => {
 });
 
 
-server.listen(process.env.PORT || 8080, (err) => {
+server.listen(5000, (err) => {
   if (err) { process.exit(1); }
   console.log('Server is up and running on port number 8080.');
 
   mongoose.set('useFindAndModify', false);
 
-  mongoose.connect(DB_URL, { useNewUrlParser: true });
+  mongoose.connect(config.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
   mongoose.connection.on('error', (_err) => {
     if (_err) { process.exit(1); }
   });
 
   require('./models');
-  fs.readdirSync(path.join(__dirname, '/config/routes')).map(file => require(`./config/routes/${file}`)(app));
+  require('./config/routes/index.js')(app);
 });
 
 router.get('/_status', (req, res) => {

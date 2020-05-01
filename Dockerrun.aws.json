@@ -1,0 +1,33 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "msintaha/frappuccino-client",
+      "hostname": "web",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "server",
+      "image": "msintaha/frappuccino-server",
+      "hostname": "api",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "msintaha/frappuccino-nginx",
+      "hostname": "proxy",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
