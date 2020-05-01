@@ -21,7 +21,6 @@ after_success:
 
   - docker push msintaha/frappuccino-client
   - docker push msintaha/frappuccino-server
-  - docker push msintaha/frappuccino-worker
   - docker push msintaha/frappuccino-nginx
 
 # deploy:

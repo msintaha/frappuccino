@@ -26,3 +26,4 @@ services:
       - EXPRESS_SESSION_SECRET=zxc90zxc
     depends_on:
       - mongo
+      - redis
