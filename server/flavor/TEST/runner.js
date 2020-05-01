@@ -10,6 +10,7 @@ const config = require('../../config'),
 describe('Flavor api', () => {
   before((done) => {
     mongoose.connect(config.TEST_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+      console.log(`Connected to ${config.TEST_DB_URL}`);
       done();
     });
   });
