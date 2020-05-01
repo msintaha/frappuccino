@@ -21,6 +21,7 @@ A Node and React Boilerplate for fast development with CI/CD
 - Create a travis-ci account, add your repository and activate it in settings
 - Add AWS environment variables like access_key and secret_key (for deploying in aws)
 - For deploying to aws, uncomment the `deploy: ` portion in the .travis.yml file and add in your bucket_name and app_name
+- Also follow steps from https://github.com/msintaha/multi-container-docker readme file for more details on spinning up AWS services. Instead of RDS, use MongoDB Atlas
 
 ### Project Structure
 
