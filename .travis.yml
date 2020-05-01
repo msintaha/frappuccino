@@ -1,0 +1,41 @@
+sudo: required
+node_js:
+  - "node"
+services:
+  - docker
+  - mongodb
+before_script:
+  - sleep 1
+
+before_install:
+  - docker build -t msintaha/client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t msintaha/server-test -f ./server/Dockerfile.dev ./server
+
+script:
+  - docker run msintaha/client-test npm run test
+  - docker run msintaha/server-test npm run test
+
+after_success:
+  - docker build -t msintaha/frappuccino-client ./client
+  - docker build -t msintaha/frappuccino-server ./server
+  - docker build -t msintaha/frappuccino-nginx ./nginx
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push msintaha/frappuccino-client
+  - docker push msintaha/frappuccino-server
+  - docker push msintaha/frappuccino-worker
+  - docker push msintaha/frappuccino-nginx
+
+# deploy:
+#   edge: true
+#   provider: elasticbeanstalk
+#   region: us-east-1
+#   app: frappuccino-docker
+#   env: MultiDocker-env
+#   bucker_name: <bucket_name>
+#   bucket_path: docker-multi
+#   on:
+#     branch: master
+# access_key_id: $AWS_ACCESS_KEY # Stored in your travis-ci env variables
+# secret_access_key: $AWS_SECRET_KEY # Stored in your travis-ci env variables
