@@ -4,8 +4,6 @@ node_js:
 services:
   - docker
   - mongodb
-before_script:
-  - sleep 1
 
 before_install:
   - docker build -t msintaha/client-test -f ./client/Dockerfile.dev ./client
