@@ -23,7 +23,7 @@ class Home extends React.Component {
         <br />
         <h5>List of flavors fetched from database</h5>
         <ul className="list-group">
-          {flavors.map(flavor => <li key={flavor.name} className="list-group-item">{flavor.name}</li>)}
+          {flavors.map(flavor => <li key={flavor._id} className="list-group-item">{flavor.name}</li>)}
         </ul>
       </div>
     );

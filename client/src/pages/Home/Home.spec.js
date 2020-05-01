@@ -10,8 +10,8 @@ describe("Home", () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(FlavorService, 'list').resolves([
-      'Cappuccino',
-      'Latte'
+      { name: 'Cappuccino', _id: 1 },
+      { name: 'Latte', _id: 2 },
     ])
   })
 
