@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo:latest'
+    restart: always
+  redis:
+    image: 'redis:latest'
+  test:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /code/node_modules
+      - ./:/code
+    command: ["npm", "run", "test"]
+    ports:
+       - '8081:5000'
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MONGOHOST=mongo
+      - MONGODB_NAME=frappuccino
+      - MONGODB_TEST=frappuccino_test
+      - MONGOPORT=27017
+      - EXPRESS_SESSION_KEY=frappuccino
+      - EXPRESS_SESSION_SECRET=zxc90zxc
+    depends_on:
+      - mongo

@@ -9,11 +9,10 @@ before_script:
 
 before_install:
   - docker build -t msintaha/client-test -f ./client/Dockerfile.dev ./client
-  - docker build -t msintaha/server-test -f ./server/Dockerfile.dev ./server
 
 script:
   - docker run msintaha/client-test npm run test
-  - docker run msintaha/server-test npm run test
+  - cd server && docker-compose up --abort-on-container-exit && cd ..
 
 after_success:
   - docker build -t msintaha/frappuccino-client ./client
