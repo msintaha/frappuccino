@@ -1,7 +1,7 @@
 module.exports = {
   redisHost: process.env.REDIS_HOST,
   redisPort: process.env.REDIS_PORT,
-  mongoHost: process.env.MONGOHOST || 'localhost',
+  mongoHost: process.env.MONGOHOST || 'mongo',
   mongoDbName: process.env.MONGODB_NAME || 'frappuccino',
   mongoTestDbName: process.env.MONGODB_TEST || 'frappuccino_test',
   mongoPort: process.env.MONGOPORT || '27017',
